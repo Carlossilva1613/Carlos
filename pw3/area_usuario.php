@@ -11,7 +11,7 @@ include 'includes/header.php';
 
 // Buscar dados do usuário
 try {
-    $stmt = $conexao->prepare("SELECT * FROM usuarios WHERE id = ?");
+    $stmt = $conexao->prepare("SELECT * FROM tb_usuario WHERE id_usuario = ?"); // Alterado de usuarios para tb_usuario e id para id_usuario
     $stmt->execute([$_SESSION['usuario_logado']]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -41,6 +41,7 @@ try {
                             <img src="assets/img/avatar.webp" class="rounded-circle" width="100" alt="Avatar">
                         </div>
                         <h5 class="text-center mb-3"><?php echo htmlspecialchars($usuario['nome'] ?? 'Usuário'); ?></h5>
+                        <!-- Verifique se 'nome' é a coluna correta em tb_usuario -->
                         <div class="list-group">
                             <a href="#" class="list-group-item list-group-item-action">
                                 <i class="fas fa-edit"></i> Editar Perfil
@@ -69,7 +70,7 @@ try {
                                     <div class="card-body text-center">
                                         <i class="fas fa-plus-circle fa-3x text-primary mb-3"></i>
                                         <h5 class="card-title">Novo Cadastro</h5>
-                                        <p class="card-text">Cadastrar novo Produto</p>
+                                        <p class="card-text">Cadastrar novo Carro</p>
                                     </div>
                                 </a>
                             </div>
@@ -78,7 +79,7 @@ try {
                                     <div class="card-body text-center">
                                         <i class="fas fa-search fa-3x text-primary mb-3"></i>
                                         <h5 class="card-title">Consultar</h5>
-                                        <p class="card-text">Ver todos os Produtos</p>
+                                        <p class="card-text">Ver todos os Carros</p>
                                     </div>
                                 </a>
                             </div>

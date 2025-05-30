@@ -18,23 +18,22 @@ include 'includes/header.php';
         <div class="card-body">
           <div class="row">
             <div class="col-md-6">
-             
+
               <p><strong><i class="fas fa-tags"></i> Marca:</strong>
-                <?= $_SESSION['cadastro_sucesso']['marca']; ?></p>
+                <?= htmlspecialchars($_SESSION['cadastro_sucesso']['marca']); ?></p>
               <p><strong><i class="fas fa-tag"></i> Modelo:</strong>
-                <?= $_SESSION['cadastro_sucesso']['modelo']; ?></p>
+                <?= htmlspecialchars($_SESSION['cadastro_sucesso']['modelo']); ?></p>
               <p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong>
-                <?= $_SESSION['cadastro_sucesso']['ano']; ?></p>
+                <?= htmlspecialchars($_SESSION['cadastro_sucesso']['ano']); ?></p>
               <p><strong><i class="fas fa-id-card"></i> Placa:</strong>
-                <?= $_SESSION['cadastro_sucesso']['placa']; ?></p>
+                <?= htmlspecialchars($_SESSION['cadastro_sucesso']['placa']); ?></p>
             </div>
             <div class="col-md-6">
               <p><strong><i class="fas fa-palette"></i> Cor:</strong>
-                <?= $_SESSION['cadastro_sucesso']['cor']; ?></p>
+                <?= htmlspecialchars($_SESSION['cadastro_sucesso']['cor']); ?></p>
               <p><strong><i class="fas fa-dollar-sign"></i> Valor:</strong> R$
-                <?= number_format((float) $_SESSION['cadastro_sucesso']['valor'], 2, ',', '.'); ?></p>
-              <p><strong><i class="fas fa-car-side"></i> Tipo:</strong>
-                <?= $_SESSION['cadastro_sucesso']['tipo_veiculo']; ?></p>
+                <?= number_format((float) $_SESSION['cadastro_sucesso']['valor'], 2, ',', '.'); ?>
+              </p>
             </div>
           </div>
         </div>
@@ -50,6 +49,17 @@ include 'includes/header.php';
     </div>
     <?php unset($_SESSION['cadastro_sucesso']); endif; ?>
 
+  <?php if (isset($_SESSION['erro'])): ?>
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+      <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Erro no Cadastro!</h4>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <hr>
+      <p><?= htmlspecialchars($_SESSION['erro']); ?></p>
+    </div>
+    <?php unset($_SESSION['erro']); endif; ?>
+
   <div class="card shadow-lg mt-4 mb-4">
     <div class="card-header bg-primary text-white">
       <h1 class="text-center mb-0">
@@ -57,8 +67,8 @@ include 'includes/header.php';
       </h1>
     </div>
     <div class="card-body bg-light">
-      <form id="f" name="f" method="post" action="processos/processa_cadastro.php"
-            enctype="multipart/form-data" class="needs-validation" novalidate>
+      <form id="f" name="f" method="post" action="processos/processa_cadastro.php" enctype="multipart/form-data"
+        class="needs-validation" novalidate>
         <div class="row">
           <!-- Informações Básicas -->
           <div class="col-md-6">
@@ -102,12 +112,13 @@ include 'includes/header.php';
             </div>
 
             <div class="form-group">
-              <label for="valor"><i class="fas fa-dollar-sign"></i> Valor (R$) <span class="text-danger">*</span></label>
+              <label for="valor"><i class="fas fa-dollar-sign"></i> Valor (R$) <span
+                  class="text-danger">*</span></label>
               <input type="text" name="valor" id="valor" class="form-control" placeholder="0,00" required>
               <div class="invalid-feedback">Informe o valor.</div>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="tipo_veiculo"><i class="fas fa-car-side"></i> Tipo de Veículo <span class="text-danger">*</span></label>
               <select name="tipo_veiculo" id="tipo_veiculo" class="form-control" required>
                 <option value="" disabled selected>Selecione</option>
@@ -117,7 +128,7 @@ include 'includes/header.php';
                 <option value="Van">Van</option>
               </select>
               <div class="invalid-feedback">Selecione o tipo.</div>
-            </div>
+            </div> -->
 
             <!-- Upload de Imagens -->
             <div class="form-group">

@@ -79,7 +79,7 @@ if (in_array($paginaAtual, $paginasRestritas)) {
                                 Área do Usuário</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-danger" href="/1site_pet/Crud4/logout.php">
+                            <a class="nav-link text-danger" href="/carlos/pw3/logout.php">
                                 Sair</a>
                         </li>
                     <?php else: ?>
