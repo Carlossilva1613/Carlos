@@ -2,40 +2,41 @@
 include 'includes/header.php';
 require_once 'processos/conexao.php';
 
-// Validação do número de controle
-if (!isset($_GET['controle']) || empty($_GET['controle'])) {
+// Validação do ID do veículo
+if (!isset($_GET['id_veiculo']) || empty($_GET['id_veiculo']) || !is_numeric($_GET['id_veiculo'])) {
     echo '<div class="container mt-4">
             <div class="alert alert-danger">
                 <i class="fas fa-exclamation-triangle"></i> 
-                Número de controle não fornecido!
+                ID do veículo não fornecido ou inválido!
             </div>
             <a href="consulta.php" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Voltar
             </a>
           </div>';
+    include 'includes/footer2.php'; // Adicionar footer para consistência
     exit();
 }
 
-$controle = $_GET['controle'];
+$id_veiculo = intval($_GET['id_veiculo']);
 
 try {
-    // Busca os dados do imóvel
-    $stmt = $conexao->prepare("SELECT * FROM imoveis WHERE controle = ?");
-    $stmt->execute([$controle]);
-    $imovel = $stmt->fetch();
+    // Busca os dados do veículo
+    $stmt = $conexao->prepare("SELECT id_veiculo, marca, modelo, placa FROM tb_veiculo WHERE id_veiculo = ?");
+    $stmt->execute([$id_veiculo]);
+    $veiculo = $stmt->fetch();
 
-    if (!$imovel) {
-        throw new Exception("Imóvel não encontrado!");
+    if (!$veiculo) {
+        throw new Exception("Veículo não encontrado!");
     }
     ?>
 
     <div class="container mt-4">
         <div class="card shadow">
             <div class="card-header bg-danger text-white">
-                <h3><i class="fas fa-trash"></i> Confirmar Exclusão</h3>
+                <h3><i class="fas fa-trash"></i> Confirmar Exclusão do Veículo</h3>
             </div>
             <div class="card-body">
-                <h4>Deseja realmente excluir este registro?</h4>
+                <h4>Deseja realmente excluir este veículo?</h4>
 
                 <div class="alert alert-danger mt-3">
                     <i class="fas fa-exclamation-triangle"></i>
@@ -43,13 +44,14 @@ try {
                 </div>
 
                 <div class="alert alert-warning mt-3">
-                    <strong>Controle:</strong> <?php echo htmlspecialchars($imovel['controle']); ?><br>
-                    <strong>Nome:</strong> <?php echo htmlspecialchars($imovel['nome']); ?><br>
-                    <strong>Endereço:</strong> <?php echo htmlspecialchars($imovel['endereco']); ?>
+                    <strong>ID:</strong> <?php echo htmlspecialchars($veiculo['id_veiculo']); ?><br>
+                    <strong>Marca:</strong> <?php echo htmlspecialchars($veiculo['marca']); ?><br>
+                    <strong>Modelo:</strong> <?php echo htmlspecialchars($veiculo['modelo']); ?><br>
+                    <strong>Placa:</strong> <?php echo htmlspecialchars($veiculo['placa']); ?>
                 </div>
 
                 <form id="formExclusao" action="processos/processa_exclusao.php" method="POST" class="mt-4">
-                    <input type="hidden" name="controle" value="<?php echo htmlspecialchars($controle); ?>">
+                    <input type="hidden" name="id_veiculo" value="<?php echo htmlspecialchars($id_veiculo); ?>">
 
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmacao">
                         <i class="fas fa-trash"></i> Confirmar Exclusão
@@ -78,7 +80,7 @@ try {
                 <div class="modal-body">
                     <div class="text-center mb-3">
                         <i class="fas fa-trash fa-3x text-danger mb-3"></i>
-                        <h4>Tem certeza que deseja excluir este registro?</h4>
+                        <h4>Tem certeza que deseja excluir este veículo?</h4>
                     </div>
 
                     <div class="alert alert-danger">
@@ -87,9 +89,10 @@ try {
                     </div>
 
                     <div class="alert alert-warning">
-                        <strong>Detalhes do registro:</strong><br>
-                        Controle: <?php echo htmlspecialchars($imovel['controle']); ?><br>
-                        Nome: <?php echo htmlspecialchars($imovel['nome']); ?>
+                        <strong>Detalhes do veículo:</strong><br>
+                        Marca: <?php echo htmlspecialchars($veiculo['marca']); ?><br>
+                        Modelo: <?php echo htmlspecialchars($veiculo['modelo']); ?><br>
+                        Placa: <?php echo htmlspecialchars($veiculo['placa']); ?>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -115,6 +118,8 @@ try {
                 <i class="fas fa-arrow-left"></i> Voltar
             </a>
           </div>';
+    include 'includes/footer2.php'; // Garantir que o footer seja incluído aqui também
+    exit(); // Adicionar exit após o footer em caso de erro
 }
 
 include 'includes/footer2.php';

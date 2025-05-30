@@ -1,6 +1,28 @@
 <?php
 session_start();
 include 'includes/header.php';
+
+// Adicionar este bloco para exibir mensagens
+if (isset($_SESSION['sucesso'])) {
+    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle"></i> ' . htmlspecialchars($_SESSION['sucesso']) . '
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+    unset($_SESSION['sucesso']);
+}
+
+if (isset($_SESSION['erro'])) {
+    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-triangle"></i> ' . htmlspecialchars($_SESSION['erro']) . '
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>';
+    unset($_SESSION['erro']);
+}
+// Fim do bloco de mensagens
 ?>
 
 <div class="container mt-4">
@@ -221,11 +243,11 @@ include 'includes/header.php';
                         <p><strong>Data de Cadastro:</strong> <span id="modal_criadoem"></span></p>
                         <p><strong>Vendedor:</strong> <span id="modal_nome_usuario"></span></p>
                         <?php /* Removido o campo ID do Usuário daqui, pois agora exibimos o nome. 
-           Se ainda precisar do ID para alguma lógica JS, ele já está sendo pego e pode ser usado internamente.
-           Se quiser exibir AMBOS, ID e Nome, adicione um novo <p> para o ID.
-           Exemplo: <p><strong>ID do Vendedor:</strong> <span id="modal_id_usuario_display"></span></p>
-           E no JS: modal.find('#modal_id_usuario_display').text(button.data('idusuario'));
-    */ ?>
+      Se ainda precisar do ID para alguma lógica JS, ele já está sendo pego e pode ser usado internamente.
+      Se quiser exibir AMBOS, ID e Nome, adicione um novo <p> para o ID.
+      Exemplo: <p><strong>ID do Vendedor:</strong> <span id="modal_id_usuario_display"></span></p>
+      E no JS: modal.find('#modal_id_usuario_display').text(button.data('idusuario'));
+*/ ?>
                     </div>
                 </div>
                 <!-- Div para exibir as imagens -->
