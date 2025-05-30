@@ -1,0 +1,32 @@
+.preview-image {
+  transition: transform 0.2s;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card:hover .preview-image {
+  transform: scale(1.05);
+}
+
+#modalImage {
+  max-height: 80vh;
+}
+
+.custom-file-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#preview .card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#preview .card-footer {
+  background-color: #f8f9fa;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}

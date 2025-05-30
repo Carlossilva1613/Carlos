@@ -1,0 +1,170 @@
+/* Estilos do Card */
+.card-img-wrapper {
+  position: relative;
+  padding-top: 75%;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-img-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.default-img {
+  object-fit: contain !important;
+  padding: 1rem;
+  background-color: #f8f9fa;
+}
+
+.hover-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 20px;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Estilos do Carrossel */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 10%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover .carousel-control-prev,
+.card:hover .carousel-control-next {
+  opacity: 0.8;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 50%;
+}
+
+/* Estilos dos Badges e Preços */
+.badge {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.price-tag {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #28a745;
+}
+
+/* Estilos do Modal */
+.swal2-popup {
+  padding: 0 !important;
+  border-radius: 15px !important;
+}
+
+.modal-header-custom {
+  padding: 1rem;
+  border-radius: 15px 15px 0 0;
+}
+
+.detalhes-imovel {
+  padding: 1.5rem;
+}
+
+.info-box {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.info-box:hover {
+  background-color: #e9ecef;
+}
+
+/* Estilos dos Filtros */
+.filtro-btns {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.btn-filter {
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.btn-filter.active {
+  transform: scale(1.05);
+}
+
+/* Estilos do modal */
+.swal2-popup {
+  padding: 0 !important;
+  width: 500px !important;
+  border-radius: 8px;
+}
+
+.swal2-title {
+  padding: 1rem !important;
+  margin: 0 !important;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.swal2-content {
+  padding: 0 1rem 1rem 1rem !important;
+}
+
+/* Informações do imóvel */
+.detalhes-imovel {
+  font-size: 0.95rem;
+}
+
+.detalhes-imovel .row {
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+.detalhes-imovel .col-12,
+.detalhes-imovel .col-md-6 {
+  padding-right: 5px;
+  padding-left: 5px;
+  margin-bottom: 10px;
+}
+
+.detalhes-imovel .bg-light {
+  background-color: #f8f9fa !important;
+  transition: background-color 0.2s;
+}
+
+.detalhes-imovel .bg-light:hover {
+  background-color: #e9ecef !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .card-img-wrapper {
+    padding-top: 66.67%;
+  }
+
+  .price-tag {
+    font-size: 1.1rem;
+  }
+
+  .badge {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
